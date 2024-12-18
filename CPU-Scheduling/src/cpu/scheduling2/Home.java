@@ -4,6 +4,8 @@
  */
 package cpu.scheduling2;
 
+import javax.swing.JComboBox;
+
 /**
  *
  * @author elmnshawy
@@ -14,6 +16,9 @@ public class Home extends javax.swing.JFrame {
      * Creates new form JFrame
      */
     public Home(String cpu_Scheduling_Algorithm_Visualiser) {
+        initComponents();
+    }
+    public Home() {
         initComponents();
     }
 
@@ -125,14 +130,24 @@ public class Home extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public static String getSelectedValue(JComboBox<String> comboBox) {
+        String selectedValue = (String) comboBox.getSelectedItem();
+        System.out.println("Selected value: " + selectedValue);
+        return selectedValue;
+    }
+    
+    
     private void algorithme_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_algorithme_typeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_algorithme_typeActionPerformed
 
     private void add_processActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_processActionPerformed
 
-
-        // TODO add your handling code here:
+        // Switch to the SearchResultsFrame
+        Add_process Add_processFrame = new Add_process();
+        Add_processFrame.setVisible(true);
+        // Hide the current frame (optional)
+        setVisible(false);
     }//GEN-LAST:event_add_processActionPerformed
 
     /**
