@@ -4,6 +4,8 @@
  */
 package cpu.scheduling2;
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,9 +26,10 @@ public class Home extends javax.swing.JFrame {
     }
     public Home() {
         initComponents();
-        model = (DefaultTableModel) table.getModel();
 
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -55,10 +58,7 @@ public class Home extends javax.swing.JFrame {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Name Process", "CPU-Time", "Wait Time", "Turnaround Time"
@@ -67,6 +67,11 @@ public class Home extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table);
 
         excute.setText("Excute");
+        excute.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excuteActionPerformed(evt);
+            }
+        });
 
         add_process.setText("Add process");
         add_process.addActionListener(new java.awt.event.ActionListener() {
@@ -163,9 +168,28 @@ public class Home extends javax.swing.JFrame {
         Add_process Add_processFrame = new Add_process();
         Add_processFrame.setVisible(true);
         // Hide the current frame (optional)
-        setVisible(false);
+//        setVisible(false);
     }//GEN-LAST:event_add_processActionPerformed
 
+    private void excuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excuteActionPerformed
+        // TODO add your handling code here:
+        
+        int num_rows = model.getRowCount();
+        int cpu_time[] = new int[num_rows];       
+        int wait_time[] = new int[num_rows];
+        int Turnaround_time[] = new int[num_rows];
+        
+        if(algorithme_type.getSelectedItem().toString() == 'FSCS')
+        
+    }//GEN-LAST:event_excuteActionPerformed
+
+    private void filltable(int cpu_time[] , int Turnaround_time[]) {
+        for(int i=0 ; i<model.getRowCount() ; i++){
+            model.setValueAt(cpu_time[i], i, 2);
+            model.setValueAt(Turnaround_time[i], i, 3);
+            
+        }
+    }
     /**
      * @param args the command line arguments
      */

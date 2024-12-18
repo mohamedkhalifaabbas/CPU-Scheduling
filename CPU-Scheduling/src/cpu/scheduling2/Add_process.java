@@ -4,6 +4,10 @@
  */
 package cpu.scheduling2;
 
+
+import static cpu.scheduling2.Home.model;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author DELL
@@ -59,6 +63,11 @@ public class Add_process extends javax.swing.JFrame {
         });
 
         add_process4.setText("Add process");
+        add_process4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_process4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -124,11 +133,7 @@ public class Add_process extends javax.swing.JFrame {
     private void add_process2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_process2ActionPerformed
         // TODO add your handling code here:
         // show in table
-        cpu.scheduling2.Home.model.addRow(new Object[] {num_process.getText() , cpu_time.getText() , 0 , 0});
         
-        cpu_time.setText("");
-        int n = Integer.parseInt(num_process.getText()) + 1;
-        num_process.setText(n+"");
     }//GEN-LAST:event_add_process2ActionPerformed
 
     private void BackkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackkActionPerformed
@@ -139,6 +144,16 @@ public class Add_process extends javax.swing.JFrame {
         setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_BackkActionPerformed
+
+    private void add_process4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_process4ActionPerformed
+        // TODO add your handling code here:
+        
+        model.addRow(new Object[]{"p " + num_process.getText() , cpu_time.getText()+"" , 0 , 0});
+
+        cpu_time.setText("");
+        int n = Integer.parseInt(num_process.getText()) + 1;
+        num_process.setText(n+"");
+    }//GEN-LAST:event_add_process4ActionPerformed
 
     /**
      * @param args the command line arguments
