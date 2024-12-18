@@ -5,6 +5,7 @@
 package cpu.scheduling2;
 
 import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,11 +16,16 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form JFrame
      */
+    
+    static DefaultTableModel model ;
     public Home(String cpu_Scheduling_Algorithm_Visualiser) {
         initComponents();
+        model = (DefaultTableModel) table.getModel();
     }
     public Home() {
         initComponents();
+        model = (DefaultTableModel) table.getModel();
+
     }
 
     /**
