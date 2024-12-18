@@ -201,6 +201,10 @@ public class Home extends javax.swing.JFrame {
         
         
         
+<<<<<<< Updated upstream
+=======
+        if(algorithme_type.getSelectedItem().toString() == "FSCS"){}
+>>>>>>> Stashed changes
         
     }//GEN-LAST:event_excuteActionPerformed
 
