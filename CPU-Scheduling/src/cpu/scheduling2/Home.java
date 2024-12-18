@@ -4,6 +4,8 @@
  */
 package cpu.scheduling2;
 
+
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.swing.JComboBox;
@@ -165,11 +167,30 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         int num_rows = model.getRowCount();
-        int cpu_time[] = new int[num_rows];       
-        int wait_time[] = new int[num_rows];
-        int Turnaround_time[] = new int[num_rows];
+        int num_process[] = new int[num_rows];        
+        int cpu_time[] = new int[num_rows];
+
+        // convert string to int
+        for (int i = 0 ; i < num_rows ; i++){
+            cpu_time[i] = Integer.parseInt(model.getValueAt(i, 1).toString());
+        }
         
-        if(algorithme_type.getSelectedItem().toString() == 'FSCS')
+        // FCFS, SJF, Priority, Round Robin
+        
+        String algorithm = algorithme_type.getSelectedItem().toString() ;
+        Object algorithm_solution[] = new Object[2]; 
+        if(algorithm == "FCFS"){
+            //num_process[] , cpu_time[]
+        }
+        else if (algorithm  == "SJF")
+        {
+        }
+        else if (algorithm == "Priority"){}
+        
+        else if (algorithm == "Round Robin"){}
+        
+        
+        
         
     }//GEN-LAST:event_excuteActionPerformed
 

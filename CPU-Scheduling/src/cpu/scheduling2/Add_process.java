@@ -148,7 +148,7 @@ public class Add_process extends javax.swing.JFrame {
     private void add_process4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_process4ActionPerformed
         // TODO add your handling code here:
         
-        model.addRow(new Object[]{"p " + num_process.getText() , cpu_time.getText()+"" , 0 , 0});
+        model.addRow(new Object[]{num_process.getText() , cpu_time.getText()+"" , 0 , 0});
 
         cpu_time.setText("");
         int n = Integer.parseInt(num_process.getText()) + 1;
