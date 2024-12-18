@@ -26,10 +26,10 @@ public class Home extends javax.swing.JFrame {
         initComponents();
         model = (DefaultTableModel) table.getModel();
     }
-    public Home() {
-        initComponents();
-
-    }
+//    public Home() {
+//        initComponents();
+//
+//    }
 
    
 
@@ -200,11 +200,7 @@ public class Home extends javax.swing.JFrame {
         else if (algorithm == "Round Robin"){}
         
         
-        
-<<<<<<< Updated upstream
-=======
-        if(algorithme_type.getSelectedItem().toString() == "FSCS"){}
->>>>>>> Stashed changes
+
         
     }//GEN-LAST:event_excuteActionPerformed
 

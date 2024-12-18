@@ -102,7 +102,8 @@ public class Loading_frame extends javax.swing.JFrame {
         {
             
         }
-        new Home().setVisible(true);
+        new Home("CPU Scheduling Algorithm Visualiser").setVisible(true);
+//        setVisible(false);
         loding.dispose();
     }
 

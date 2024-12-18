@@ -138,8 +138,9 @@ public class Add_process extends javax.swing.JFrame {
 
     private void BackkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackkActionPerformed
 
-        Home HomeFrame = new Home();
-        HomeFrame.setVisible(true);
+        Home HomeFrame = new Home("CPU Scheduling Algorithm Visualiser");
+        
+//        HomeFrame.setVisible(true);
         // Hide the current frame (optional)
         setVisible(false);
         // TODO add your handling code here:
