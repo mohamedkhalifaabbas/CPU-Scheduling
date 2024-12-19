@@ -6,7 +6,9 @@ package cpu.scheduling2;
 
 
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
@@ -20,11 +22,12 @@ public class Home extends javax.swing.JFrame {
     /**
      * Creates new form JFrame
      */
-    
+    static List<Process> processes = new ArrayList<>();
     static DefaultTableModel model ;
+    int quantumValue ;
     public Home(String cpu_Scheduling_Algorithm_Visualiser) {
         initComponents();
-        model = (DefaultTableModel) table.getModel();
+//        model = (DefaultTableModel) table.getModel();
     }
 //    public Home() {
 //        initComponents();
@@ -93,10 +96,6 @@ public class Home extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(206, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(184, 184, 184))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
@@ -108,7 +107,11 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(algorithme_type, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(excute, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(184, 184, 184))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +155,8 @@ public class Home extends javax.swing.JFrame {
         
         if (quantum != null && !quantum.isEmpty()) {
             try {
-                int quantumValue = Integer.parseInt(quantum);
+                quantumValue = Integer.parseInt(quantum);
+                
                 // Process the quantum value as needed
                 javax.swing.JOptionPane.showMessageDialog(this, "Quantum set to: " + quantumValue, "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } catch (NumberFormatException e) {
@@ -165,6 +169,7 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_algorithme_typeActionPerformed
 
     private void add_processActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_processActionPerformed
+        model = (DefaultTableModel) table.getModel();
 
         // Switch to the SearchResultsFrame
         Add_process Add_processFrame = new Add_process();
@@ -175,41 +180,61 @@ public class Home extends javax.swing.JFrame {
 
     private void excuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excuteActionPerformed
         // TODO add your handling code here:
-        
-        int num_rows = model.getRowCount();
-        int num_process[] = new int[num_rows];        
-        int cpu_time[] = new int[num_rows];
-
-        // convert string to int
-        for (int i = 0 ; i < num_rows ; i++){
-            cpu_time[i] = Integer.parseInt(model.getValueAt(i, 1).toString());
-        }
+//        
+//        int num_rows = model.getRowCount();
+//        int num_process[] = new int[num_rows];        
+//        int cpu_time[] = new int[num_rows];
+//
+//        // convert string to int
+//        for (int i = 0 ; i < num_rows ; i++){
+//            cpu_time[i] = Integer.parseInt(model.getValueAt(i, 1).toString());
+//        }
         
         // FCFS, SJF, Priority, Round Robin
         
         String algorithm = algorithme_type.getSelectedItem().toString() ;
-        Object algorithm_solution[] = new Object[2]; 
+        
         if(algorithm == "FCFS"){
             //num_process[] , cpu_time[]
+           processes  = Algorithmes.FCSA(processes);
+           showProcessTable(processes);
         }
         else if (algorithm  == "SJF")
         {
+            
         }
-        else if (algorithm == "Priority"){}
+        else if (algorithm == "Priority"){
         
-        else if (algorithm == "Round Robin"){}
+            processes  = Algorithmes.Priority(processes);
+        }
+        
+        else if (algorithm == "Round Robin"){
+        
+            processes  = Algorithmes.RoundRobin(processes , quantumValue);
+        }
         
         
 
         
     }//GEN-LAST:event_excuteActionPerformed
 
-    private void filltable(int cpu_time[] , int Turnaround_time[]) {
-        for(int i=0 ; i<model.getRowCount() ; i++){
-            model.setValueAt(cpu_time[i], i, 2);
-            model.setValueAt(Turnaround_time[i], i, 3);
-            
-        }
+//    private void filltable(int cpu_time[] , int Turnaround_time[]) {
+//        for(int i=0 ; i<model.getRowCount() ; i++){
+//            model.setValueAt(cpu_time[i], i, 2);
+//            model.setValueAt(Turnaround_time[i], i, 3);
+//            
+//        }
+//    }
+    
+    
+    private static void showProcessTable(List<Process> processes) {
+        
+       
+         for(int i=0 ; i < model.getRowCount() ; i++){
+             model.setValueAt(processes.get(i).getWaitingTime(), i, 2);
+             model.setValueAt(processes.get(i).getTurnaroundTime(), i, 3);   
+             System.out.println(processes.get(i).getWaitingTime());
+         }
     }
     /**
      * @param args the command line arguments
