@@ -7,10 +7,14 @@ package cpu.scheduling2;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -18,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author elmnshawy
  */
 public class Home extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form JFrame
      */
@@ -28,6 +32,11 @@ public class Home extends javax.swing.JFrame {
     public Home(String cpu_Scheduling_Algorithm_Visualiser) {
         initComponents();
 //        model = (DefaultTableModel) table.getModel();
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // to close from exite
+        setResizable(false); // Don't let anyone control the size
+        setLocation(350, 100); //The window opens where I want
+        
+        setTitle("CPU Scheduling");
     }
 //    public Home() {
 //        initComponents();
@@ -55,10 +64,10 @@ public class Home extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(217, 234, 253));
+        jPanel1.setBackground(new java.awt.Color(217, 222, 210));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Lucida Fax", 2, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CPU Scheduling Algorithm Visualizer");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
@@ -71,6 +80,8 @@ public class Home extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(table);
 
+        excute.setBackground(new java.awt.Color(42, 78, 103));
+        excute.setForeground(new java.awt.Color(255, 255, 255));
         excute.setText("Excute");
         excute.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,6 +89,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        add_process.setBackground(new java.awt.Color(42, 78, 103));
+        add_process.setForeground(new java.awt.Color(255, 255, 255));
         add_process.setText("Add process");
         add_process.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +98,8 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        algorithme_type.setBackground(new java.awt.Color(42, 78, 103));
+        algorithme_type.setForeground(new java.awt.Color(255, 255, 255));
         algorithme_type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Algorithme type", "FCFS", "SJF", "Priority", "Round Robin" }));
         algorithme_type.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +126,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(184, 184, 184))
+                .addGap(185, 185, 185))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,6 +164,44 @@ public class Home extends javax.swing.JFrame {
     }
     
     
+    private List<Integer> setPriorities() {
+    int numberOfRows = table.getRowCount();
+    if (numberOfRows == 0) {
+        JOptionPane.showMessageDialog(null, "No rows in the table.", "Error", JOptionPane.ERROR_MESSAGE);
+        return null;
+    }
+
+    DefaultTableModel model = (DefaultTableModel) table.getModel();
+    List<Integer> priorities = new ArrayList<>();
+
+    for (int i = 0; i < numberOfRows; i++) {
+        String processName = (String) model.getValueAt(i, 0);
+        String priority = JOptionPane.showInputDialog(
+            null,
+            "Enter priority for process: " + processName,
+            "Set Priority",
+            JOptionPane.QUESTION_MESSAGE
+        );
+
+        if (priority != null && !priority.trim().isEmpty()) {
+            try {
+                int priorityValue = Integer.parseInt(priority);
+                priorities.add(priorityValue);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Invalid priority. Please enter a valid integer.", "Error", JOptionPane.ERROR_MESSAGE);
+                i--;
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Priority is required. Please enter a value.", "Error", JOptionPane.ERROR_MESSAGE);
+            i--;
+        }
+    }
+
+    JOptionPane.showMessageDialog(null, "All priorities have been set.", "Success", JOptionPane.INFORMATION_MESSAGE);
+    return priorities;
+}
+
+
     private void algorithme_typeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_algorithme_typeActionPerformed
         if ("Round Robin".equals(algorithme_type.getSelectedItem())) {
         String quantum = javax.swing.JOptionPane.showInputDialog(this, "Enter quantum:", "Quantum Input", javax.swing.JOptionPane.PLAIN_MESSAGE);
@@ -157,7 +210,6 @@ public class Home extends javax.swing.JFrame {
             try {
                 quantumValue = Integer.parseInt(quantum);
                 
-                // Process the quantum value as needed
                 javax.swing.JOptionPane.showMessageDialog(this, "Quantum set to: " + quantumValue, "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             } catch (NumberFormatException e) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Invalid quantum value! Please enter a valid number.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
@@ -166,6 +218,15 @@ public class Home extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Quantum input was canceled or left empty.", "Info", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
     }
+                
+    if ("Priority".equals(algorithme_type.getSelectedItem())) {
+        List<Integer> priorities = setPriorities();
+        if (priorities != null) {
+            System.out.println("Priorities: " + priorities);
+        }
+    }
+
+    
     }//GEN-LAST:event_algorithme_typeActionPerformed
 
     private void add_processActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_processActionPerformed
@@ -201,7 +262,8 @@ public class Home extends javax.swing.JFrame {
         }
         else if (algorithm  == "SJF")
         {
-            
+            processes  = Algorithmes.SJF(processes);
+            showProcessTable(processes);
         }
         else if (algorithm == "Priority"){
         

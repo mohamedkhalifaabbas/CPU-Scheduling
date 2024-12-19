@@ -6,6 +6,8 @@ package cpu.scheduling2;
 
 
 import static cpu.scheduling2.Home.model;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,6 +22,11 @@ public class Add_process extends javax.swing.JFrame {
     public Add_process() {
         initComponents();
         num_process.setText("1");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // to close from exite
+        setResizable(false); // Don't let anyone control the size
+        setLocation(500, 150); //The window opens where I want
+        
+        setTitle("CPU Scheduling");
     }
 
     /**
@@ -41,7 +48,7 @@ public class Add_process extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(90, 108, 90));
+        jPanel1.setBackground(new java.awt.Color(217, 222, 210));
 
         cpu_time.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +62,8 @@ public class Add_process extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Lucida Fax", 2, 20)); // NOI18N
         jLabel2.setText("cpu time");
 
+        Backk.setBackground(new java.awt.Color(42, 78, 103));
+        Backk.setForeground(new java.awt.Color(255, 255, 255));
         Backk.setText("Back");
         Backk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +71,8 @@ public class Add_process extends javax.swing.JFrame {
             }
         });
 
+        add_process4.setBackground(new java.awt.Color(42, 78, 103));
+        add_process4.setForeground(new java.awt.Color(255, 255, 255));
         add_process4.setText("Add process");
         add_process4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
