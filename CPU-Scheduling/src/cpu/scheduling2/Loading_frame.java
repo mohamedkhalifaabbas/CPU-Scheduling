@@ -4,9 +4,17 @@
  */
 package cpu.scheduling2;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.sql.SQLException;
+import javax.swing.GroupLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import javax.swing.LayoutStyle;
+import javax.swing.WindowConstants;
 
 
 /**
@@ -28,16 +36,18 @@ public class Loading_frame extends javax.swing.JFrame {
     setLocation(350, 150); // The window opens where I want
     
     setTitle("CPU Scheduling");
-
-    // Debug and load the image properly
-    java.net.URL imgURL = getClass().getResource("/images/iconnn.png");
-    System.out.println("Image URL: " + imgURL); // Debugging
-    if (imgURL != null) {
-        jLabel2.setIcon(new javax.swing.ImageIcon(imgURL));
-    } else {
-        System.err.println("Image not found! Check the path: /images/iconnn.png");
-    }
+//
+//    // Debug and load the image properly
+String url = "F:\\EELU Matrial\\fiveth term\\OS\\Screenshot 2024-12-18 070802.png" ;
+java.net.URL imgURL = Loading_frame.class.getResource(url);
+if (imgURL != null) {
+    jLabel2.setIcon(new javax.swing.ImageIcon(imgURL));
+} else {
+    System.err.println("Image not found! Check the path: /images/iconnn.png");
+    jLabel2.setText("Image not found!");
 }
+
+    }
 
 
     /**
@@ -49,65 +59,61 @@ public class Loading_frame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        myProgress = new javax.swing.JProgressBar();
-        tage = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        jPanel1 = new JPanel();
+        myProgress = new JProgressBar();
+        tage = new JLabel();
+        jLabel1 = new JLabel();
+        jLabel2 = new JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(189, 189, 189));
+        jPanel1.setBackground(new Color(189, 189, 189));
 
-        myProgress.setForeground(new java.awt.Color(42, 78, 103));
+        myProgress.setForeground(new Color(42, 78, 103));
 
-        tage.setFont(new java.awt.Font("Segoe Print", 1, 36)); // NOI18N
-        tage.setForeground(new java.awt.Color(42, 78, 103));
+        tage.setFont(new Font("Segoe Print", 1, 36)); // NOI18N
+        tage.setForeground(new Color(42, 78, 103));
         tage.setText("     %");
 
-        jLabel1.setFont(new java.awt.Font("Lucida Fax", 3, 36)); // NOI18N
+        jLabel1.setFont(new Font("Lucida Fax", 3, 36)); // NOI18N
         jLabel1.setText("CPU Scheduling");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/iconnn.png"))); // NOI18N
+        jLabel2.setIcon(new ImageIcon(getClass().getResource("/images/iconnn.png"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(myProgress, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        jPanel1Layout.setHorizontalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(myProgress, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tage)
                 .addGap(66, 66, 66))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(176, 176, 176)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
                 .addContainerGap(233, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
                 .addGap(28, 28, 28)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
-                .addComponent(tage, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(tage, GroupLayout.PREFERRED_SIZE, 45, GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(myProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(myProgress, GroupLayout.PREFERRED_SIZE, 10, GroupLayout.PREFERRED_SIZE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        layout.setHorizontalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        layout.setVerticalGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -139,10 +145,10 @@ public class Loading_frame extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JProgressBar myProgress;
-    private javax.swing.JLabel tage;
+    private JLabel jLabel1;
+    private JLabel jLabel2;
+    private JPanel jPanel1;
+    private JProgressBar myProgress;
+    private JLabel tage;
     // End of variables declaration//GEN-END:variables
 }

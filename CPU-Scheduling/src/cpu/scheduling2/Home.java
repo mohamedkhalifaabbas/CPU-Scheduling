@@ -224,6 +224,9 @@ public class Home extends javax.swing.JFrame {
         if (priorities != null) {
             System.out.println("Priorities: " + priorities);
         }
+        for (int i = 0 ; i < priorities.size() ; i++){
+            processes.get(i).setPriority(priorities.get(i));
+        }
     }
 
     
@@ -241,16 +244,7 @@ public class Home extends javax.swing.JFrame {
 
     private void excuteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excuteActionPerformed
         // TODO add your handling code here:
-//        
-//        int num_rows = model.getRowCount();
-//        int num_process[] = new int[num_rows];        
-//        int cpu_time[] = new int[num_rows];
-//
-//        // convert string to int
-//        for (int i = 0 ; i < num_rows ; i++){
-//            cpu_time[i] = Integer.parseInt(model.getValueAt(i, 1).toString());
-//        }
-        
+
         // FCFS, SJF, Priority, Round Robin
         
         String algorithm = algorithme_type.getSelectedItem().toString() ;
@@ -268,11 +262,21 @@ public class Home extends javax.swing.JFrame {
         else if (algorithm == "Priority"){
         
             processes  = Algorithmes.Priority(processes);
+            showProcessTable(processes);
+
         }
         
         else if (algorithm == "Round Robin"){
         
             processes  = Algorithmes.RoundRobin(processes , quantumValue);
+                        showProcessTable(processes);
+
+        }
+        else {
+        
+            // show messege to tell user select algorithm
+            JOptionPane.showMessageDialog(null, "Please select an algorithm to proceed.", 
+                                      "Algorithm Selection", JOptionPane.INFORMATION_MESSAGE);
         }
         
         

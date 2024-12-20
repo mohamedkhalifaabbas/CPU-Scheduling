@@ -6,8 +6,10 @@ package cpu.scheduling2;
 
 
 import static cpu.scheduling2.Home.model;
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,12 +23,16 @@ public class Add_process extends javax.swing.JFrame {
      */
     public Add_process() {
         initComponents();
-        num_process.setText("1");
+        setTextnum_process();
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // to close from exite
         setResizable(false); // Don't let anyone control the size
         setLocation(500, 150); //The window opens where I want
         
         setTitle("CPU Scheduling");
+    }
+    
+    private void setTextnum_process(){
+        num_process.setText("process " + (Process.numOfprocess + 1));
     }
 
     /**
@@ -46,7 +52,9 @@ public class Add_process extends javax.swing.JFrame {
         Backk = new javax.swing.JButton();
         add_process4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setTitle("Add New Process");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(217, 222, 210));
 
@@ -150,23 +158,38 @@ public class Add_process extends javax.swing.JFrame {
     private void BackkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackkActionPerformed
 
         Home HomeFrame = new Home("CPU Scheduling Algorithm Visualiser");
-        
-//        HomeFrame.setVisible(true);
-        // Hide the current frame (optional)
         setVisible(false);
-        // TODO add your handling code here:
     }//GEN-LAST:event_BackkActionPerformed
 
     private void add_process4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_process4ActionPerformed
         // TODO add your handling code here:
-        model.addRow(new Object[]{num_process.getText() , cpu_time.getText()+"" , 0 , 0});
-        Home.processes.add(new Process(num_process.getText() ,Integer.parseInt(cpu_time.getText()) ));
-//        System.out.println(Home.processes.get(0).getCpuTime());;
-        cpu_time.setText("");
-        int n = Integer.parseInt(num_process.getText()) + 1;
-        num_process.setText(n+"");
+        
+        if (cpu_time.getText().isEmpty() || !isNumeric(cpu_time.getText()) || ! (isValidCPUTime(cpu_time.getText()+"")) ){
+            JOptionPane.showMessageDialog(null, "Please enter a valid CPU time.");
+        }
+        else{
+            model.addRow(new Object[]{num_process.getText() , cpu_time.getText()+"" , 0 , 0});
+            Home.processes.add(new Process(num_process.getText() ,Integer.parseInt(cpu_time.getText()) ));
+            cpu_time.setText("");
+            setTextnum_process();
+        
+        }
+        
     }//GEN-LAST:event_add_process4ActionPerformed
 
+    private static boolean isNumeric(String str) {
+    try {
+        Integer.parseInt(str); 
+        return true; 
+    } catch (NumberFormatException e) {
+        return false; 
+    }
+}
+    private boolean isValidCPUTime(String cpuTime){
+        int ctime = Integer.parseInt(cpuTime);
+        
+        return  ctime > 0 ;
+    }
     /**
      * @param args the command line arguments
      */

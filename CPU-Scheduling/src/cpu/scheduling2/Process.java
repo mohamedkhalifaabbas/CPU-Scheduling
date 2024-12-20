@@ -10,7 +10,7 @@ package cpu.scheduling2;
  */
 public class Process {
     
-    
+    public static int numOfprocess = 0 ;
     private String processID;
     private int cpuTime;
     private int priority;
@@ -24,6 +24,7 @@ public class Process {
     public Process(String processID, int cpuTime) {
         this.processID = processID;
         this.cpuTime = cpuTime;
+        numOfprocess++;
     }
     
     
